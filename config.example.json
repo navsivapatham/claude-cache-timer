@@ -1,0 +1,10 @@
+{
+  "warn_minutes": 10,
+  "critical_minutes": 2,
+  "bar_width": 12,
+  "nerd_font": false,
+  "notify": true,
+  "telegram_bot_token": "123456:ABC-your-bot-token",
+  "telegram_chat_id": "123456789",
+  "notify_command": null
+}
