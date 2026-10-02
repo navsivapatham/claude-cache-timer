@@ -56,7 +56,10 @@ Add to `~/.claude/settings.json`:
 
 The timer sends **one** ping per cache window when the time remaining crosses the warn threshold (10 min by default):
 
-> ⏳ Claude cache cools in 10 min — my-project · ctx 42%
+> ⏳ Claude cache cools in 10 min — my-project · ctx 42%  
+> Cold restart ≈ 90k tokens re-processed.
+
+The token estimate comes from Claude Code's `prompt_cache.recache_tokens_if_cold` field and is left out when that field isn't available.
 
 Pings only fire for TTLs longer than the warn threshold, so a 5-minute cache never pings. They're sent from a detached process, so the status line never blocks. Notifications need the Claude Code session to stay open; the status line is what checks the time.
 

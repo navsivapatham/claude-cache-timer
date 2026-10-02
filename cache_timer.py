@@ -209,7 +209,17 @@ def build_message(data, now):
     mins = max(0, round((pc.get("expires_at", now) - now) / 60))
     pct = (data.get("context_window") or {}).get("used_percentage")
     ctx = f" · ctx {pct:.0f}%" if pct is not None else ""
-    return f"⏳ Claude cache cools in {mins} min — {session_label(data)}{ctx}"
+    recache = pc.get("recache_tokens_if_cold")
+    cost = f"\nCold restart ≈ {fmt_tokens(recache)} tokens re-processed." if recache else ""
+    return f"⏳ Claude cache cools in {mins} min — {session_label(data)}{ctx}{cost}"
+
+
+def fmt_tokens(n):
+    if n >= 1_000_000:
+        return f"{n / 1_000_000:.1f}M"
+    if n >= 1_000:
+        return f"{n / 1_000:.0f}k"
+    return str(n)
 
 
 def send_notification(msg, cfg):
