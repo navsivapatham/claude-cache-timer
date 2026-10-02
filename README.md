@@ -34,7 +34,7 @@ python3 cache_timer.py --demo
 Requires Python 3.8+ (stdlib only) and Claude Code v2.1.251+ (for the `prompt_cache` status line field).
 
 ```sh
-git clone https://github.com/<you>/claude-cache-timer ~/claude-cache-timer
+git clone https://github.com/navsivapatham/claude-cache-timer ~/claude-cache-timer
 ```
 
 Add to `~/.claude/settings.json`:
