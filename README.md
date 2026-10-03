@@ -3,7 +3,7 @@
 A [Claude Code](https://code.claude.com) status line that shows **how long until your prompt cache goes cold**, alongside **how much of the context window you've used**, and can ping you on Telegram before the cache expires.
 
 ```
-◔ ctx 23%  │  cache ▰▰▰▰▰▰▰▰▰▱▱▱ 47:12 1h
+◔ ctx 23% used  │  cache ▰▰▰▰▰▰▰▰▰▱▱▱ 47:12 1h
 ```
 
 ## Why
@@ -16,7 +16,7 @@ If you step away from your desk, you have no way to tell how long you have left.
 
 | Segment | Meaning |
 |---|---|
-| `◔ ctx 23%` | Context-window usage: a ring plus a percentage. Green below 60%, amber below 80%, red above. |
+| `◔ ctx 23% used` | How much of the context window is used: a ring plus a percentage. Green below 60%, amber below 80%, red above. |
 | `cache ▰▰▰▱▱ 47:12` | The cache TTL draining down, with an mm:ss countdown. Green, then amber (≤ 10 min), then red (≤ 2 min). |
 | `1h` / `5m` | The TTL of the current cached prefix. |
 | `cold` | The cache has expired, so your next message is a full re-read. |
@@ -56,7 +56,7 @@ Add to `~/.claude/settings.json`:
 
 The timer sends **one** ping per cache window when the time remaining crosses the warn threshold (10 min by default):
 
-> ⏳ Claude cache cools in 10 min — my-project · ctx 42%  
+> ⏳ Claude cache cools in 10 min — my-project · ctx 42% used  
 > Cold restart ≈ 90k tokens re-processed.
 
 The token estimate comes from Claude Code's `prompt_cache.recache_tokens_if_cold` field and is left out when that field isn't available.

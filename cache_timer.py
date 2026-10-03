@@ -135,7 +135,7 @@ def render(data, cfg, now):
         parts.append(f"{GREY}{ring(0, cfg['nerd_font'])} ctx --{RESET}")
     else:
         c = ctx_color(pct)
-        parts.append(f"{c}{ring(pct, cfg['nerd_font'])} ctx {pct:.0f}%{RESET}")
+        parts.append(f"{c}{ring(pct, cfg['nerd_font'])} ctx {pct:.0f}% used{RESET}")
 
     pc = data.get("prompt_cache")
     w = cfg["bar_width"]
@@ -208,7 +208,7 @@ def build_message(data, now):
     pc = data.get("prompt_cache") or {}
     mins = max(0, round((pc.get("expires_at", now) - now) / 60))
     pct = (data.get("context_window") or {}).get("used_percentage")
-    ctx = f" · ctx {pct:.0f}%" if pct is not None else ""
+    ctx = f" · ctx {pct:.0f}% used" if pct is not None else ""
     recache = pc.get("recache_tokens_if_cold")
     cost = f"\nCold restart ≈ {fmt_tokens(recache)} tokens re-processed." if recache else ""
     return f"⏳ Claude cache cools in {mins} min — {session_label(data)}{ctx}{cost}"
